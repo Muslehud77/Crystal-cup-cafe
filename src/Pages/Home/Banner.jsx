@@ -29,7 +29,7 @@ const Banner = () => {
             data-aos-delay="700"
             data-aos-anchor-placement="top-bottom"
           >
-            <Link to={'/menu'} className="font-serif text-sm md:text-xl btn  capitalize font-thin">
+            <Link to={'/menu'} className="font-serif dark:text-white text-sm md:text-xl btn  capitalize font-thin">
               Grab Your Cup <AiOutlineArrowRight/>
             </Link>
           </div>
@@ -40,6 +40,7 @@ const Banner = () => {
           className="absolute top-0 h-screen object-cover"
           alt=""
         />
+        <div className='h-screen hidden dark:flex w-screen absolute top-0 bg-black opacity-40'></div>
       </div>
     );
 };

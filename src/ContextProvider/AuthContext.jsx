@@ -11,7 +11,7 @@ const AuthProvider = ({children}) => {
 const [user,setUser] = useState(null)
 const [loading,setLoading] = useState(true)
 const [dark,setDark] = useState(false)
-
+const [cart,setCart] = useState([])
 const [name,setName] = useState('')
 
 
@@ -56,7 +56,7 @@ useEffect(()=>{
 },[])
     const info = {
       goToTop,
-   
+   cart,setCart,
       name,
       setName,
     

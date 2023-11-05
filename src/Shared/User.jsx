@@ -2,16 +2,21 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
-import Button from "@mui/material/Button";
+
 import useContextData from "../Hooks/useContextData";
 import { Link, NavLink } from "react-router-dom";
 import { AiOutlineArrowRight, AiOutlineShoppingCart } from "react-icons/ai";
 
 
 export default function User() {
-    const {user,logout} = useContextData()
-
+    const {user,logout,cart} = useContextData()
     
+    const cartCount = (
+      <div className="relative">
+        <AiOutlineShoppingCart />
+        <p className="text-xs absolute bg-red-500 rounded-full -top-1 -right-2 text-white px-[4px]">{cart.length > 0 ? cart.length : ''}</p>
+      </div>
+    );
 
   const [state, setState] = React.useState({
    right: false,
@@ -44,25 +49,29 @@ const idle =
 
 const links = (
   <>
-    <NavLink  onClick={(toggleDrawer('right', false))}
+    <NavLink
+      onClick={toggleDrawer("right", false)}
       to={"/cart"}
       className={({ isActive, isPending }) =>
         isActive ? active : isPending ? pending : idle
       }
     >
-      Cart <AiOutlineShoppingCart className="text-xl" />
+      Cart <span className="text-xl"> {cartCount}</span>
     </NavLink>
-  
-   <hr />
-    <NavLink   onClick={(toggleDrawer('right', false))}
+
+    <hr />
+    <NavLink
+      onClick={toggleDrawer("right", false)}
       to={"/add-item"}
       className={({ isActive, isPending }) =>
         isActive ? active : isPending ? pending : idle
       }
     >
-     Add Item<AiOutlineArrowRight className="text-xl" />
+      Add Item
+      <AiOutlineArrowRight className="text-xl" />
     </NavLink>
-    <NavLink   onClick={(toggleDrawer('right', false))}
+    <NavLink
+      onClick={toggleDrawer("right", false)}
       to={"/manage-items"}
       className={({ isActive, isPending }) =>
         isActive ? active : isPending ? pending : idle
@@ -70,7 +79,8 @@ const links = (
     >
       Manage Items <AiOutlineArrowRight className="text-xl" />
     </NavLink>
-    <NavLink   onClick={(toggleDrawer('right', false))}
+    <NavLink
+      onClick={toggleDrawer("right", false)}
       to={"/items-added-by-user"}
       className={({ isActive, isPending }) =>
         isActive ? active : isPending ? pending : idle
@@ -78,7 +88,8 @@ const links = (
     >
       Items added by me <AiOutlineArrowRight className="text-xl" />
     </NavLink>
-    <NavLink   onClick={(toggleDrawer('right', false))}
+    <NavLink
+      onClick={toggleDrawer("right", false)}
       to={"/manage-orders"}
       className={({ isActive, isPending }) =>
         isActive ? active : isPending ? pending : idle
@@ -156,7 +167,7 @@ const links = (
             </div>
            
             <Link to={"/cart"} className="text-2xl ml-4">
-              <AiOutlineShoppingCart />
+             {cartCount}
             </Link>
           </div>
           <Drawer
