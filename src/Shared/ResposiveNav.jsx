@@ -23,14 +23,14 @@ export default function ResponsiveNav() {
 //   onClick={toggleDrawer(anchor, false)}
 
   const list = (anchor) => (
-    <Box classNameNameName="w-80">
-      <div className="flex h-screen w-16 flex-col justify-between border-e bg-white">
+    <Box classNameNameName="">
+      <div className="flex h-screen overflow-hidden flex-col justify-between border-e bg-white">
         <div>
           <div
           
             className="inline-flex h-16 w-16 items-center justify-center"
           >
-            <User></User>
+            <User hide={true}></User>
           </div>
 
          

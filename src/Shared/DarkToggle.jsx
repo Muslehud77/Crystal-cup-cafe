@@ -1,10 +1,10 @@
-import React from 'react';
+
 import useContextData from '../Hooks/useContextData';
 
 const DarkToggle = () => {
 
     const {dark,setDark} = useContextData()
-    console.log(dark)
+ 
     return (
       <label className="swap text-white swap-rotate mr-4">
         {/* this hidden checkbox controls the state */}

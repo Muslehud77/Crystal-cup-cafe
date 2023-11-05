@@ -8,7 +8,7 @@ import { Link, NavLink } from "react-router-dom";
 import { AiOutlineArrowRight, AiOutlineShoppingCart } from "react-icons/ai";
 
 
-export default function User() {
+export default function User({hide}) {
     const {user,logout,cart} = useContextData()
     
     const cartCount = (
@@ -111,7 +111,7 @@ const links = (
           </ul>
         </div>
 
-        <div className="sticky inset-x-0 bottom-0 border-t border-gray-100">
+        <div className="sticky bg-white inset-x-0 bottom-0 border-t border-gray-100">
           <div className="flex justify-between pr-5">
             <div className="flex items-center gap-2 bg-white p-4 hover:bg-gray-50">
               <img
@@ -165,10 +165,12 @@ const links = (
                 <img src={user?.photoURL} />
               </div>
             </div>
-           
-            <Link to={"/cart"} className="text-2xl ml-4">
-             {cartCount}
-            </Link>
+
+            {!hide && (
+              <Link to={"/cart"} className="text-2xl ml-4">
+                {cartCount}
+              </Link>
+            )}
           </div>
           <Drawer
             anchor={anchor}

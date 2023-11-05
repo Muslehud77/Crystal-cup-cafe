@@ -8,7 +8,7 @@ import DarkToggle from "./DarkToggle";
 const Navbar = () => {
 const {pathname} = useLocation()
   const {user} = useContextData()
-console.log(pathname);
+
   return (
     <div>
       <div className="navbar  relative z-50 bg-black bg-opacity-10 dark:bg-opacity-20 shadow-lg backdrop-blur-sm h-16">
@@ -38,7 +38,7 @@ console.log(pathname);
           ) : (
             <Link
               to={"/login"}
-              className="flex items-center gap-x-2 font-medium text-gray-500 hover:text-blue-600 md:border-l md:border-gray-300 md:my-6 md:pl-6 dark:border-gray-700 dark:text-white dark:hover:text-blue-500"
+              className="flex  p-2 items-center gap-x-2 font-medium   md:border-l md:border-gray-300 md:my-6 md:pl-6 dark:border-gray-700 text-white "
               href="#"
             >
               <svg
