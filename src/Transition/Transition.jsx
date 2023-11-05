@@ -1,7 +1,7 @@
 
 
 import { motion, useIsPresent } from "framer-motion";
-import logo from '../Assets/Crystal Cup.png'
+
 
 const Transition = () => {
   

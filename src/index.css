@@ -2,6 +2,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@font-face {
+  font-family: finura;
+  src: url(../public/Finura-Roman.otf);
+
+}
+@font-face {
+  font-family: blantick;
+  src: url(../public/Blantick Script.ttf);
+
+}
+
 
 body{
     scrollbar-width: none;
@@ -9,11 +20,20 @@ body{
 
 .privacy-screen {
   position: fixed;
+  transform: rotate(45deg);
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: black;
-  z-index: 2;
+  /* min-width: 500px; */
+  background-color: #343135;
+  z-index: 20;
+}
+
+.finura{
+  font-family: finura;
+}
+.blantick{
+  font-family: blantick;
 }
 
