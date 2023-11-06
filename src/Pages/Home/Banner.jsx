@@ -31,12 +31,17 @@ const Banner = () => {
             data-aos="fade-up"
             data-aos-delay="700"
             data-aos-anchor-placement="top-bottom"
+            className="flex justify-center items-center "
           >
             <Link
               to={"/menu"}
-              className="font-serif dark:text-white text-sm md:text-xl btn  capitalize font-thin"
+              className="font-serif text-xl outline outline-[1px] px-12 py-3 mt-2 rounded-full hover:outline-0  text-white group relative flex justify-center items-center overflow-hidden"
             >
-              Grab Your Cup <AiOutlineArrowRight />
+              <span className="absolute left-0 w-0 h-full transition-all bg-[#C14616] opacity-100 group-hover:w-full group-hover:top-0 duration-500 ease"></span>
+              <span className="relative">Grab Your Cup</span>{" "}
+              <span className="absolute right-0 w-8 mt-[1px] flex items-center justify-start duration-500 transform translate-x-full group-hover:translate-x-0">
+                <AiOutlineArrowRight />
+              </span>
             </Link>
           </div>
         </div>
