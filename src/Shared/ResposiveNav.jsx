@@ -23,7 +23,7 @@ export default function ResponsiveNav() {
 //   onClick={toggleDrawer(anchor, false)}
 
   const list = (anchor) => (
-    <Box classNameNameName="">
+    <Box >
       <div className="flex h-screen overflow-hidden flex-col justify-between border-e bg-white">
         <div>
           <div
@@ -51,8 +51,7 @@ export default function ResponsiveNav() {
                 stroke-width="2"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+               
                   d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
                 />
               </svg>

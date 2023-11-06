@@ -7,7 +7,7 @@ import { AiOutlineArrowRight } from 'react-icons/ai';
 
 const Banner = () => {
     return (
-      <div className="h-screen dark:bg-[#1F2937]  flex justify-center items-center container mx-auto">
+      <div className="h-screen   flex justify-center items-center container mx-auto">
         <div className="text-3xl md:text-7xl max-h-screen space-y-2 shadow-2xl bg-black bg-opacity-30 p-10 backdrop-blur-sm text-center text-white finura relative z-20">
           <p data-aos="fade-up" data-aos-anchor-placement="top-bottom">
             Raise Your Glass

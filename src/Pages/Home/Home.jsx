@@ -3,7 +3,7 @@ import Transition from "../../Transition/Transition";
 
 import { Link } from "react-router-dom";
 import Banner from "./Banner";
-import Features from "./Features";
+import Combo from "./Combo";
 import BestSelling from "./BestSelling";
 import Delivery from './Delivery';
 
@@ -11,10 +11,10 @@ import Delivery from './Delivery';
 const Home = () => {
 
   return (
-    <div>
+    <div className="bg-patternLight dark:bg-patternDark overflow-hidden">
       <Banner></Banner>
       <BestSelling></BestSelling>
-      <Features></Features>
+      <Combo></Combo>
       <Delivery></Delivery>
       <Transition></Transition>
     </div>

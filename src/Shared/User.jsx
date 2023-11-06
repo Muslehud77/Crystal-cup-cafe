@@ -101,7 +101,7 @@ const links = (
 );
 
   const list = (anchor) => (
-    <Box classNameName="w-80">
+    <Box className="w-80">
       <div className="flex w-80  h-screen flex-col justify-between border-e bg-white">
         <div className="px-4 py-6">
           <h5 className="font-semibold text-xl p-3 rounded-lg text-white bg-black">Hello! {user?.displayName}</h5>
@@ -137,11 +137,10 @@ const links = (
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
-                stroke-width="2"
+               
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  
                   d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
                 />
               </svg>
