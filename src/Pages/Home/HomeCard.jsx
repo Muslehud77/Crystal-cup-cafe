@@ -1,14 +1,13 @@
 
 import { Link } from 'react-router-dom';
-
+import PropTypes from "prop-types";
 const HomeCard = ({item}) => {
 
    
 
    
      const { _id, name, category, price_BTD, color, image} = item;
-     
-   console.log(item)
+ 
     return (
       <>
         <Link
@@ -42,5 +41,16 @@ const HomeCard = ({item}) => {
       </>
     );
 };
+HomeCard.propTypes = {
+  item: PropTypes.obj,
+};
 
 export default HomeCard;
+
+
+
+
+
+
+
+

@@ -1,14 +1,15 @@
 
 import { Outlet } from "react-router-dom";
 import Navbar from "../Shared/Navbar";
-import Aos from "aos";
 
+import { SkeletonTheme } from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 const Root = () => {
   return (
-    <div>
+    <SkeletonTheme baseColor="#31313188" highlightColor="#52525294">
       <Navbar></Navbar>
       <Outlet></Outlet>
-    </div>
+    </SkeletonTheme>
   );
 };
 

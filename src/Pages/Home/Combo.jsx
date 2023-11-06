@@ -14,7 +14,7 @@ const Combo = () => {
           <div
             data-aos="zoom-in-right"
             data-aos-duration="1000"
-            className="flex  text-black relative flex-col px-6 py-8  rounded-sm sm:p-8 lg:p-12 backdrop-blur-sm"
+            className="flex  text-black relative flex-col px-6 py-8  rounded-sm sm:p-8 lg:p-12 backdrop-blur-sm dark:backdrop-blur-0"
           >
             <h3
               data-aos="zoom-in-up"
@@ -50,7 +50,7 @@ const Combo = () => {
           <div
             data-aos="zoom-in-left"
             data-aos-duration="1000"
-            className="flex  text-black relative flex-col px-6 py-8  rounded-sm sm:p-8 lg:p-12 backdrop-blur-sm"
+            className="flex  text-black relative flex-col px-6 py-8  rounded-sm sm:p-8 lg:p-12 backdrop-blur-sm dark:backdrop-blur-0"
           >
             <h3 className="text-5xl finura font-bold uppercase bg-[#FBA446] dark:bg-[white] p-2 rounded-xl ">
               The Spicy Chicken Delight

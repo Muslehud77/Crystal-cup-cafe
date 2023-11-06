@@ -1,6 +1,7 @@
 import { FacebookAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import auth from "../Firebase/firebase.config";
+import { useLocalStorage } from "@uidotdev/usehooks";
 
 export const AuthContext = createContext(null)
 
@@ -10,7 +11,7 @@ const facebookProvider = new FacebookAuthProvider()
 const AuthProvider = ({children}) => {
 const [user,setUser] = useState(null)
 const [loading,setLoading] = useState(true)
-const [dark,setDark] = useState(false)
+const [dark,setDark] = useLocalStorage('dark',false)
 const [cart,setCart] = useState([])
 const [name,setName] = useState('')
 

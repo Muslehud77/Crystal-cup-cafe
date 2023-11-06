@@ -1,12 +1,11 @@
-import img1 from '../../Assets/images/blue ocen juice.jpg'
-import img2 from '../../Assets/images/coffee.jpg'
-import img3 from "../../Assets/images/mangoShake.jpg";
-import img4 from "../../Assets/images/kitcatFaluda.jpg";
+
 import { Link } from 'react-router-dom';
 import shape1 from '../../Assets/special/shape-7.png'
 import {  useFetch } from '../../Fetching/useFetch';
 import HomeCard from './HomeCard';
 import { AiOutlineArrowRight } from 'react-icons/ai';
+import SkeletonCardHome from './SkeletonCardHome';
+
 
 const BestSelling = () => {
 const url = "http://localhost:5000/api/v1/best-selling";
@@ -39,6 +38,8 @@ const {data,isFetching,refetch} = useFetch(url,'best-selling');
             </p>
           </div>
           <div className="md:grid  grid-cols-3 flex flex-col justify-center group mt-28">
+            {isFetching && <SkeletonCardHome></SkeletonCardHome>}
+           
             {data?.map((item) => (
               <HomeCard key={item._id} item={item}></HomeCard>
             ))}
