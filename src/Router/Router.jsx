@@ -80,6 +80,7 @@ const Router = () => {
                 </PrivateRouteForOthers>
             ),
           },
+         
           {
             path: "/add-item",
             element: (
