@@ -42,7 +42,7 @@ const HomeCard = ({item}) => {
     );
 };
 HomeCard.propTypes = {
-  item: PropTypes.obj,
+  item: PropTypes.object
 };
 
 export default HomeCard;

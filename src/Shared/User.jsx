@@ -161,7 +161,7 @@ const links = (
           >
             <div className="avatar">
               <div className="w-12 rounded-full">
-                <img src={user?.photoURL} />
+                <img src={user.photoURL} />
               </div>
             </div>
 

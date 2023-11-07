@@ -7,10 +7,12 @@ import axios from 'axios';
 
 
 export const useFetch = (url,query='query') => {
+
    const {data,isLoading,isFetching,refetch} = useQuery({
     queryKey:[query],
     queryFn: async ()=>{
         const data = await axios.get(url,{withCredentials:true}); 
+      
         return await data.data;
     }
    })

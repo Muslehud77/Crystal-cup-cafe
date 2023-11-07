@@ -5,12 +5,15 @@ import {  useFetch } from '../../Fetching/useFetch';
 import HomeCard from './HomeCard';
 import { AiOutlineArrowRight } from 'react-icons/ai';
 import SkeletonCardHome from './SkeletonCardHome';
+import { useEffect } from 'react';
 
 
 const BestSelling = () => {
 const url = "http://localhost:5000/api/v1/best-selling";
 
-const {data,isFetching,refetch} = useFetch(url,'best-selling');
+
+
+const {data,isFetching} = useFetch(url,'best-selling');
 
     return (
       <section className="text-gray-600 body-font mb-10  relative">
