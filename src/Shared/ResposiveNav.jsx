@@ -41,20 +41,27 @@ const idle =
 //   onClick={toggleDrawer(anchor, false)}
 
   const list = (anchor) => (
-    <Box onClick={toggleDrawer(anchor, false)}>
+    <Box>
       <div className="flex h-screen overflow-hidden w-16 flex-col justify-between border-e bg-white">
         <div>
           <div className="flex mt-5 flex-col items-center justify-center">
             {user ? (
               <User hide={true}></User>
             ) : (
-              <Link to={"/login"} className="text-2xl">
+              <Link
+                onClick={toggleDrawer(anchor, false)}
+                to={"/login"}
+                className="text-2xl"
+              >
                 <IoIosLogIn />
               </Link>
             )}
             <div className="w-10 h-[1px] bg-gray-600 mt-2"></div>
           </div>
-          <div className="flex justify-center">
+          <div
+            onClick={toggleDrawer(anchor, false)}
+            className="flex justify-center"
+          >
             <NavLink
               className={({ isActive, isPending }) =>
                 isActive ? active : isPending ? pending : idle

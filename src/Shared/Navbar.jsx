@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import User from "./User";
 import ResponsiveNav from "./ResposiveNav";
 import useContextData from "../Hooks/useContextData";
@@ -9,9 +9,48 @@ const Navbar = () => {
 const {pathname} = useLocation()
   const {user} = useContextData()
 
+  
+const active =
+  "relative text-white rounded text-black uppercase text-xs  py-1 px-2 hover:tracking-[0.25em] hover:text-white hover:bg-black shadow-[0_0_30px_white] duration-300 tracking-[0.1em]";
+const pending =
+  "relative text-white rounded text-black uppercase text-xs  py-1 px-2 hover:tracking-[0.25em] hover:text-black hover:bg-white  hover:shadow-[0_0_65px_white] duration-300 tracking-[0.1em]";
+const idle =
+  "relative text-white rounded text-black uppercase text-xs  py-1 px-2 hover:tracking-[0.25em] hover:text-black hover:bg-white  hover:shadow-[0_0_65px_white] duration-300 tracking-[0.1em]";
+
+const links = (
+  <>
+    <NavLink
+      className={({ isActive, isPending }) =>
+        isActive ? active : isPending ? pending : idle
+      }
+      to={"/"}
+    >
+      Home
+    </NavLink>
+    <NavLink
+      className={({ isActive, isPending }) =>
+        isActive ? active : isPending ? pending : idle
+      }
+      to={"/menu"}
+    >
+      Menu
+    </NavLink>
+    <NavLink
+      className={({ isActive, isPending }) =>
+        isActive ? active : isPending ? pending : idle
+      }
+      to={"/contact"}
+    >
+      Contact
+    </NavLink>
+  </>
+);
+
+
   return (
     <div>
-      <div className="navbar  relative z-50 bg-black bg-opacity-10 dark:bg-opacity-20 shadow-lg backdrop-blur-sm h-16">
+     
+      <div className="navbar relative z-50 bg-black bg-opacity-10 dark:bg-opacity-20 shadow-lg backdrop-blur-sm h-16">
         <div className="navbar-start">
           <div className="dropdown md:hidden">
             <ResponsiveNav></ResponsiveNav>
@@ -23,9 +62,9 @@ const {pathname} = useLocation()
                 pathname === "/" && "text-white"
               } menu  gap-5 menu-horizontal px-1`}
             >
-              <Link to={"/"}>Home</Link>
-              <Link to={"/about"}>About</Link>
-              <Link to={"/contact"}>Contact</Link>
+             {
+              links
+             }
             </ul>
           </div>
         </div>
@@ -33,8 +72,7 @@ const {pathname} = useLocation()
         <div className="navbar-end">
           <DarkToggle></DarkToggle>
           {user ? (
-
-              <User></User>
+            <User></User>
           ) : (
             <Link
               to={"/login"}

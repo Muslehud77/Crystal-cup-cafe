@@ -60,6 +60,7 @@ const {data,isFetching} = useFetch(url,'best-selling');
             </span>
           </Link>
         </div>
+        
       </section>
     );
 };

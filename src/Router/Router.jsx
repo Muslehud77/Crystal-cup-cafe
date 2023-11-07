@@ -1,6 +1,6 @@
 
 import Root from "../Root/Root";
-import About from "../Pages/About/About";
+
 import Home from "../Pages/Home/Home";
 import Contact from "../Pages/Contact/Contact";
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
@@ -16,6 +16,7 @@ import AddItem from "../Pages/Add-Item/Add-Item";
 import ManageItems from "../Pages/Manage-Items/ManageItems";
 import AddedByUser from "../Pages/AddedByUser/AddedByUser";
 import HandleOrders from "../Pages/HandleOrders/HandleOrders";
+import Menu from "../Pages/Menu/Menu";
 
   
 const Router = () => {
@@ -35,10 +36,10 @@ const Router = () => {
             ),
           },
           {
-            path: "/about",
+            path: "/menu",
             element: (
               <AnimatePresence mode="wait" initial={false}>
-                <About key={"/about"}></About>
+                <Menu key={"/menu"}></Menu>
               </AnimatePresence>
             ),
           },

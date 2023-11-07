@@ -6,11 +6,14 @@ export default {
   theme: {
     extend: {
       backgroundImage: {
-        "patternLight": "url('/src/Assets/special/background.svg')",
-        "patternDark": "url('/src/Assets/special/backgroundDark.svg')",
-        
+        patternLight: "url('/src/Assets/special/background.svg')",
+        patternDark: "url('/src/Assets/special/backgroundDark.svg')",
       },
     },
   },
-  plugins: [require("daisyui")],
+  plugins: [
+   
+    require("daisyui"),
+   
+  ],
 };
