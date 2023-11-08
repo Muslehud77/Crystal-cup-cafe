@@ -16,36 +16,84 @@ import SkeletonCardHome from "../Home/SkeletonCardHome";
 
 const Menu = () => {
 
-  const [url, setUrl] = useState(`http://localhost:5000/api/v1/menu`);
+  
   const [sort,setSort] = useState('All')
   const [path,setPath] = useState('/menu')
 
-  const { data, isFetching ,refetch} = useFetch(url);
 
+
+
+
+   const [url, setUrl] = useState(`http://localhost:5000/api/v1/menu?page=1&size=9`);
+  const { data, isFetching, refetch } = useFetch(url);
+
+
+  const count = data?.count || 50
+  const [itemsPerPage, setItemsPerPage] = useState(9);
+  const pagesCount = Math.ceil(count / itemsPerPage);
+  const [currentPage, setCurrentPage] = useState(1);
+
+     const pages = [...Array(pagesCount).keys()].map(
+       (pageNumber) => pageNumber + 1
+     );
+
+    const perPageItems = (e) => {
+      setItemsPerPage(e.target.value);
+      setCurrentPage(1);
+    };
+   
+    console.log(data)
+
+  useEffect(() => {
+    if (sort === "All") {
+      setPath(`/menu`);
+      setUrl(
+        `http://localhost:5000/api/v1/menu?page=${currentPage}&size=${itemsPerPage}`
+      );
+    } else {
+      setPath(`/menu/${sort}`);
+      setUrl(
+        `http://localhost:5000/api/v1/menu/${sort}?page=${currentPage}&size=${itemsPerPage}`
+      );
+    }
+     refetch();
+    console.log(url);
+  }, [url,pagesCount, currentPage]);
+
+
+const toTop = ()=>{
+  window.scrollTo({
+    top: 400,
+    behavior: "smooth",
+  });
+}
 
   const handleFetch = (s)=>{
-    setSort(s)
-    
-     if (s === "All") {
+     setCurrentPage(1);
+    if (s === "All") {
       setPath(`/menu`);
-       setUrl(`http://localhost:5000/api/v1/menu`);
-
-     }else{
+      setUrl(
+        `http://localhost:5000/api/v1/menu?page=${currentPage}&size=${itemsPerPage}`
+      );
+    } else {
       setPath(`/menu/${s}`);
-       setUrl(`http://localhost:5000/api/v1/menu/${s}`);
-
-     }
+      setUrl(
+        `http://localhost:5000/api/v1/menu/${s}?page=${currentPage}&size=${itemsPerPage}`
+      );
+    }
+    setSort(s)
+    refetch();
+    
   }
 
 
-useEffect(()=>{
-  refetch()
-},[url])
+useEffect(() => {
+  refetch();
+}, [url, pagesCount, currentPage]);
 
+console.log(url, pagesCount, currentPage);
 
-
-  console.log(data)
-  console.log(url)
+ 
   const sortings = ['All','Ice-Cream','Faluda','Lassi','Drinks','Dessert','Combo']
 
   const handleSearch = (e)=>{
@@ -93,15 +141,59 @@ useEffect(()=>{
             </div>
           </header>
         </div>
-        <div className="grid grid-cols-3 gap-10 container mx-auto">
+        <div className="md:grid grid-cols-3 gap-10 container mx-auto">
           {isFetching && <SkeletonCardHome w={true}></SkeletonCardHome>}
-          {data?.map((item) => (
+          {data?.data.map((item) => (
             <Card key={item._id} item={item}></Card>
           ))}
+        </div>
+        <div onClick={toTop} className="flex justify-center my-10">
+          <div className="join border-none">
+            <button
+              onClick={() =>
+                setCurrentPage(currentPage !== 1 && currentPage - 1)
+              }
+              className="join-item outline-0 btn btn-md"
+            >
+              prev
+            </button>
+            {pages.map((page, i) => (
+              <button
+                key={i}
+                onClick={() => setCurrentPage(page)}
+                className={`join-item ${
+                  currentPage === page && "btn-active"
+                } outline-0 btn btn-md`}
+              >
+                {page}
+              </button>
+            ))}
+            <select
+              onChange={perPageItems}
+              defaultValue={itemsPerPage}
+              className="join-item outline-0 btn btn-md"
+            >
+              <option value="6">06</option>
+              <option value="9">09</option>
+              <option value="20">20</option>
+              <option value="50">50</option>
+            </select>
+            <button
+              onClick={() =>
+                setCurrentPage(
+                  currentPage !== pagesCount ? currentPage + 1 : currentPage
+                )
+              }
+              className="join-item outline-0 btn btn-md"
+            >
+              next
+            </button>
+          </div>
         </div>
         <Transition></Transition>
       </div>
     );
+    // btn - active;
     
 };
 
