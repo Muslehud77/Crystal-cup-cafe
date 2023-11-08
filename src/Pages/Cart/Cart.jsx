@@ -9,6 +9,7 @@ import Transition from "../../Transition/Transition";
 
 import { Helmet } from "react-helmet";
 import { useEffect } from "react";
+import Swal from "sweetalert2";
 
 
 const Cart = () => {
@@ -32,13 +33,20 @@ useEffect(()=>{
 },[])
 
 const handleDelete =async (id)=>{
- await axios.delete(`http://localhost:5000/api/v1/cart/${id}`);
+ await axios.delete(`http://localhost:5000/api/v1/cart/${id}`)
+ await Swal.fire({
+   position: "center",
+   icon: "success",
+   title: "Successfully removed from cart",
+   showConfirmButton: false,
+   timer: 1500,
+ });
  await cartFetch()
 }
 
 
     return (
-      <div>
+      <div className="">
         <Helmet>
           <meta charSet="utf-8" />
           <title>Cystal Cup | Cart</title>

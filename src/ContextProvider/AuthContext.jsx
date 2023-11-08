@@ -28,7 +28,7 @@ const goToTop = ()=>{
  const cartFetch= async()=>{
     setCartLoading(true);
    await axios
-      .get(`http://localhost:5000/api/v1/cart?email=${user.email}`)
+      .get(`http://localhost:5000/api/v1/cart?email=${user.email}`,{withCredentials:true})
       .then((res) =>{
          setCart(res.data);
           setCartLoading(false);
