@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import useContextData from '../../Hooks/useContextData';
 
 const Table = ({item,handleDelete}) => {
+    const {user} = useContextData()
     return (
       <tr className="">
         <td>
@@ -27,7 +29,7 @@ const Table = ({item,handleDelete}) => {
         <td>{item.price_BTD}/-</td>
 
         <th>
-          <Link to={`/edit/${item._id}`} className="btn btn-ghost btn-sm">
+          <Link to={`/edit-item/${item._id}`} className="btn btn-ghost btn-sm">
             Edit
           </Link>
         </th>

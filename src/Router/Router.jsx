@@ -19,11 +19,14 @@ import HandleOrders from "../Pages/HandleOrders/HandleOrders";
 import Menu from "../Pages/Menu/Menu";
 import ItemDetails from "../Pages/ItemDetails/ItemDetails";
 import AddToCartPage from "../Pages/AddToCartPage/AddToCartPage";
+import EditItem from "../Pages/EditItem/EditItem";
+import useContextData from "../Hooks/useContextData";
+import axios from "axios";
 
 
   
 const Router = () => {
-    
+    const {user} = useContextData()
     const router = createBrowserRouter([
       {
         path: "/",
@@ -147,6 +150,23 @@ const Router = () => {
               <PrivateRouteForOthers>
                 <AnimatePresence mode="wait" initial={false}>
                   <HandleOrders key={"/manage-orders"}></HandleOrders>
+                </AnimatePresence>
+              </PrivateRouteForOthers>
+            ),
+          },
+          {
+            path: "/edit-item/:id",
+            loader: async ({ params }) =>{
+              const data= await axios.get(`http://localhost:5000/api/v1/manage/edit-item/${params.id}/${user?.email}`)
+              return data.data
+            }
+             
+              ,
+
+            element: (
+              <PrivateRouteForOthers>
+                <AnimatePresence mode="wait" initial={false}>
+                  <EditItem key={"/edit-item/:id"}></EditItem>
                 </AnimatePresence>
               </PrivateRouteForOthers>
             ),

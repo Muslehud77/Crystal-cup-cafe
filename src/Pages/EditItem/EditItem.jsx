@@ -5,9 +5,8 @@ import { AuthContext } from "../../ContextProvider/AuthContext";
 import Transition from "../../Transition/Transition";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
-
-
-
+import { useLoaderData, useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
 const capitalize = (array) => {
   return array.map((word) => {
     const firstLetter = word.charAt(0).toUpperCase();
@@ -16,59 +15,60 @@ const capitalize = (array) => {
   });
 };
 
+const EditItem = () => {
+  const { dark, user } = useContext(AuthContext);
+  const [img, setImg] = useState(null);
+    const navigate = useNavigate()
+  const data = useLoaderData()
 
-
-const AddItem = () => {
-  const { dark ,user} = useContext(AuthContext);
-  const [img,setImg] = useState(null)
-
-const base64 = (e)=>{
-  const reader = new FileReader();
- const isPresent = e.target.files.length
- if(isPresent){
-   reader.readAsDataURL(e.target.files[0]);
-   reader.onload = () => {
-     setImg(reader.result);
-   };
- }
-}
-const url = "http://localhost:5000/api/v1/add-product";
-
-const mutation = useMutation({
-  mutationFn: async (toDo) => {
-   const data = await axios.post(url, toDo, {
-      withCredentials: true,
-      
-    });
-    if(data.data.insertedId){
-      Swal.fire({
-        position: "center",
-        icon: "success",
-        title: `Added ${name} `,
-        text: `As User : ${user?.displayName} Email : ${user?.email}`,
-        showConfirmButton: false,
-        timer: 1500,
-      });
+  const base64 = (e) => {
+    const reader = new FileReader();
+    const isPresent = e.target.files.length;
+    if (isPresent) {
+      reader.readAsDataURL(e.target.files[0]);
+      reader.onload = () => {
+        setImg(reader.result);
+      };
     }
-    return console.log(data.data)
-  },
-});
+  };
+  const url = `http://localhost:5000/api/v1/modify/${data?._id}`;
 
+  const mutation = useMutation({
+    mutationFn: async (toDo) => {
+      const data = await axios.patch(url, toDo, {
+        withCredentials: true,
+      });
+     
+      if (data.data.modifiedCount>0) {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: `Edited Sucessfully`,
+          text: `As User : ${user?.displayName} Email : ${user?.email}`,
+          showConfirmButton: false,
+          timer: 1500,
 
-  const addProduct = (e) => {
+        });
+        navigate('/manage-items')
+      }
+      return console.log(data.data);
+    },
+  });
+
+  const EditItem = (e) => {
     e.preventDefault();
-    const form = e.target;   
-    const name = form.name.value
-    const description = form.description.value
+    const form = e.target;
+    const name = form.name.value;
+    const description = form.description.value;
     const ingredients = capitalize(form.ingredients.value.split(","));
     const makingProcedure = capitalize(form.makingProcedure.value.split(","));
-    const category = form.category.value
-    const quantity = form.quantity.value
-    const foodOriginCountry = form.foodOriginCountry.value
-    const image = img ? img : form.image.value
+    const category = form.category.value;
+    const quantity = form.quantity.value;
+    const foodOriginCountry = form.foodOriginCountry.value;
+    const image = img ? img : form.image.value;
 
     const price_BTD = form.price_BTD.value;
-   const  product = {
+    const product = {
       name,
       description,
       ingredients,
@@ -81,19 +81,18 @@ const mutation = useMutation({
       price_BTD,
       nameOfAdder: user?.displayName,
       addedBy: user?.email,
-      sellingCount : 0
+      
     };
- 
-    mutation.mutate(product)
-    
 
+    mutation.mutate(product);
   };
-
-  
-
 
   return (
     <div className="isolate px-6 py-24 sm:py-32 lg:px-8">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Cystal Cup | Edit</title>
+      </Helmet>
       <div
         className="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]"
         aria-hidden="true"
@@ -107,14 +106,11 @@ const mutation = useMutation({
         />
       </div>
       <div className="mx-auto max-w-2xl text-center">
-        <h2 className="text-7xl finura  tracking-tight  ">
-          Add Item
-        </h2>
+        <h2 className="text-7xl finura  tracking-tight  ">Edit {data?.name}</h2>
         <p className="mt-2 text-lg leading-8 "></p>
       </div>
       <form
-      
-        onSubmit={addProduct}
+        onSubmit={EditItem}
         className="mx-auto justify-center flex-col md:flex-row gap-10 flex mt-16 sm:mt-20"
       >
         <div>
@@ -146,7 +142,7 @@ const mutation = useMutation({
                 </div>
               )}
 
-              <input 
+              <input
                 id="dropzone-file"
                 accept="image/*"
                 name="file"
@@ -170,8 +166,8 @@ const mutation = useMutation({
                 OR
               </label>
               <div className=" mt-2.5">
-                <input required
-                  
+                <input
+                  defaultValue={data?.image}
                   placeholder="URL"
                   type="photo"
                   name="image"
@@ -187,8 +183,10 @@ const mutation = useMutation({
               Item Name
             </label>
             <div className="mt-2.5">
-              <input required
+              <input
+                required
                 // required
+                defaultValue={data?.name}
                 placeholder="Item Name"
                 type="text"
                 name="name"
@@ -203,10 +201,12 @@ const mutation = useMutation({
               Country
             </label>
             <div className="mt-2.5">
-              <input required
+              <input
+                required
                 // required
                 placeholder="Food origin country
 "
+                defaultValue={data?.foodOriginCountry}
                 type="text"
                 name="foodOriginCountry"
                 autoComplete="given-name"
@@ -221,7 +221,7 @@ const mutation = useMutation({
             </label>
             <select
               name="category"
-              defaultValue="Category?"
+              defaultValue={data?.category}
               className={`select select-bordered ${
                 dark && "bg-[#3B3B3B]"
               }  w-full  mt-1 block rounded-md border-0 px-3.5 py-2  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6`}
@@ -237,10 +237,12 @@ const mutation = useMutation({
 
           <div className="sm:col-span-1">
             <label className="block text-sm font-semibold leading-6 ">
-              Quantity
+              Quantity Availave
             </label>
             <div className=" mt-2.5">
-              <input required
+              <input
+                defaultValue={data?.quantity}
+                required
                 placeholder="100"
                 // required
                 type="number"
@@ -254,7 +256,9 @@ const mutation = useMutation({
               Price
             </label>
             <div className="relative mt-2.5">
-              <input required
+              <input
+                defaultValue={data?.price_BTD}
+                required
                 placeholder="Price"
                 // required
                 type="number"
@@ -272,8 +276,9 @@ const mutation = useMutation({
               Ingredients
             </label>
             <div className=" mt-2.5">
-              <input required
-                // required
+              <input
+                required
+                defaultValue={data?.ingredients.toString()}
                 placeholder="Ingredients (put Comma ',' after each ingredient)"
                 name="ingredients"
                 className="block w-full rounded-md border-0 px-3.5 py-2   shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -285,8 +290,10 @@ const mutation = useMutation({
               Making Procedure
             </label>
             <div className=" mt-2.5">
-              <input required
+              <input
+                required
                 // required
+                defaultValue={data?.makingProcedure.toString()}
                 placeholder="Making Procedure (put Comma ',' after each procedure)"
                 name="makingProcedure"
                 className="block w-full rounded-md border-0 px-3.5 py-2   shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -300,6 +307,7 @@ const mutation = useMutation({
             <div className="mt-2.5">
               <textarea
                 name="description"
+                defaultValue={data?.description}
                 rows={4}
                 className="block w-full rounded-md border-0 px-3.5 py-2  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 placeholder="Description..."
@@ -311,7 +319,7 @@ const mutation = useMutation({
               type="submit"
               className="block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
-              Add Product
+              Update Item
             </button>
           </div>
         </div>
@@ -322,4 +330,4 @@ const mutation = useMutation({
   );
 };
 
-export default AddItem;
+export default EditItem;
