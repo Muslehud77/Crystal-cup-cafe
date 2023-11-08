@@ -31,7 +31,9 @@ const ItemDetails = () => {
                   <h2 className="text-md w-min px-2 py-1 rounded bg-black dark:text-black dark:bg-white  title-font text-white tracking-widest">
                     {item?.category}
                   </h2>
-                  <span>Origin {item?.foodOriginCountry}</span>
+                  <span className="dark:text-white">
+                    Origin {item?.foodOriginCountry}
+                  </span>
                   <h1 className="text-gray-900 dark:text-white font-serif text-3xl title-font font-medium mb-1">
                     {item?.name}
                   </h1>
@@ -71,10 +73,14 @@ const ItemDetails = () => {
                       </div>
                     </div>
                   </div>
-                  <p className="mt-5">Added by : {item?.nameOfAdder}</p>
+                  <p className="mt-5 dark:text-white">
+                    Added by : {item?.nameOfAdder}
+                  </p>
                   <div className="flex items-center pb-5 border-b-2 border-gray-100 mb-5">
-                    <div className="flex">
-                      <span className="mr-3">Quantity Left :</span>
+                    <div className="flex dark:text-white">
+                      <span className="mr-3 dark:text-white">
+                        Quantity Left :
+                      </span>
                       {item?.quantity}
                     </div>
                   </div>

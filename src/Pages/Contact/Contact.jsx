@@ -7,7 +7,7 @@ import Background from "./Background";
 const Contact = () => {
   return (
     <>
-      <section className="relative z-10 overflow-hidden bg-white py-20 dark:bg-black lg:py-[120px]">
+      <section className="relative z-10 bg-patternLight dark:bg-patternDark overflow-hidden py-20 dark:bg-black lg:py-[120px]">
         <div className="container">
           <div className="-mx-4 flex flex-wrap lg:justify-between">
             <div className="w-full px-4 lg:w-1/2 xl:w-6/12">
@@ -15,14 +15,10 @@ const Contact = () => {
                 <span className="mb-4 block text-base font-semibold text-primary">
                   Contact Us
                 </span>
-                <h2 className="mb-6 text-[32px] font-bold uppercase text-dark dark:text-white sm:text-[40px] lg:text-[36px] xl:text-[40px]">
-                  GET IN TOUCH WITH US
+                <h2 className="mb-6 finura text-[32px] font-bold uppercase text-dark dark:text-white sm:text-[40px] lg:text-[36px] xl:text-[40px]">
+                  GET IN TOUCH CRYSTAL CUP
                 </h2>
-                <p className="mb-9 text-base leading-relaxed text-body-color dark:text-dark-6">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eius tempor incididunt ut labore e dolore magna aliqua. Ut
-                  enim adiqua minim veniam quis nostrud exercitation ullamco
-                </p>
+                <p className="mb-9 text-base leading-relaxed text-body-color dark:text-dark-6"></p>
                 <div className="mb-8 flex w-full max-w-[370px]">
                   <div className="mr-6 flex h-[60px] w-full max-w-[60px] items-center justify-center overflow-hidden rounded bg-primary/5 text-primary sm:h-[70px] sm:max-w-[70px]">
                     <svg
@@ -43,14 +39,12 @@ const Contact = () => {
                       Our Location
                     </h4>
                     <p className="text-base text-body-color dark:text-dark-6">
-                      99 S.t Jomblo Park Pekanbaru 28292. Indonesia
+                      Saf-amin Shopping mall Chattogram,Bangladesh
                     </p>
                   </div>
                 </div>
 
-                <div className="mb-8 flex w-full max-w-[370px]">
-               
-                </div>
+                <div className="mb-8 flex w-full max-w-[370px]"></div>
 
                 <div className="mb-8 flex w-full max-w-[370px]">
                   <div className="mr-6 flex h-[60px] w-full max-w-[60px] items-center justify-center overflow-hidden rounded bg-primary/5 text-primary sm:h-[70px] sm:max-w-[70px]">
@@ -72,7 +66,7 @@ const Contact = () => {
                       Email Address
                     </h4>
                     <p className="text-base text-body-color dark:text-dark-6">
-                      info@yourdomain.com
+                     crytalcup@gmail.com
                     </p>
                   </div>
                 </div>
@@ -128,7 +122,7 @@ const Contact = () => {
                       />
                     </svg>
                   </span>
-                <Background></Background>
+                  <Background></Background>
                 </div>
               </div>
             </div>

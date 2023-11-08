@@ -97,6 +97,10 @@ const Router = () => {
           },
           {
             path: "/add-to-cart/:id",
+            loader: ({ params }) =>
+              fetch(
+                `http://localhost:5000/api/v1/menu/item-details/${params.id}`
+              ),
             element: (
               <PrivateRouteForOthers>
                 <AnimatePresence mode="wait" initial={false}>

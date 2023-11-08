@@ -81,11 +81,11 @@ const Login = () => {
 
 
     return (
-      <div className="mt-10">
+      <div className="pt-20 bg-patternLight dark:bg-patternDark ">
         {/* <button onClick={logout} className='btn' >logout test</button> */}
-        <div className="flex justify-center items-center w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg  lg:max-w-4xl">
+        <div className="flex justify-center items-center w-full max-w-sm mx-auto overflow-hidden  rounded-lg shadow-lg  lg:max-w-4xl">
           <div className="hidden p-2 lg:flex flex-col items-center justify-center lg:w-1/2">
-            <img src={logo} className='w-28' alt="" />
+            <img src={logo} className="w-28" alt="" />
             <Lottie
               loop={false}
               animationData={welcome}
@@ -99,13 +99,13 @@ const Login = () => {
               <img className="w-20" src="" alt="" />
             </div>
 
-            <p className="mt-3 text-xl text-center text-gray-600 ">
+            <p className="mt-3 text-xl text-center  ">
               Welcome back!!
             </p>
 
             <a
               onClick={() => handleSocialLogin(googleLogin)}
-              className="flex hover:cursor-pointer items-center justify-center mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg   hover:bg-gray-50 "
+              className="flex hover:cursor-pointer items-center justify-center mt-4  transition-colors duration-300 transform border rounded-lg   hover:bg-gray-50 "
             >
               <div className="px-4 text-2xl py-2">
                 <FcGoogle />
@@ -117,7 +117,7 @@ const Login = () => {
             </a>
             <a
               onClick={() => handleSocialLogin(facebookLogin)}
-              className="flex hover:cursor-pointer items-center justify-center mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg   hover:bg-gray-50 -600"
+              className="flex hover:cursor-pointer items-center justify-center mt-4  transition-colors duration-300 transform border rounded-lg   hover:bg-gray-50 -600"
             >
               <div className="px-4 text-2xl py-2">
                 <SiFacebook />
@@ -143,7 +143,7 @@ const Login = () => {
 
             <form onSubmit={handleSubmit}>
               <div className="mt-4">
-                <label className="block mb-2 text-sm font-medium text-gray-600 ">
+                <label className="block mb-2 text-sm font-medium  ">
                   Email Address
                 </label>
                 <input
@@ -157,7 +157,7 @@ const Login = () => {
 
               <div className="mt-4">
                 <div className="flex justify-between">
-                  <label className="block mb-2 text-sm font-medium text-gray-600 ">
+                  <label className="block mb-2 text-sm font-medium  ">
                     Password
                   </label>
                   <a
@@ -214,7 +214,7 @@ const Login = () => {
             </div>
           </div>
         </div>
-        <Transition/>
+        <Transition />
       </div>
     );
 };

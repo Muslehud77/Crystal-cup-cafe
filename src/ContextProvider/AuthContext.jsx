@@ -2,6 +2,8 @@ import { FacebookAuthProvider, GoogleAuthProvider, createUserWithEmailAndPasswor
 import { createContext, useEffect, useState } from "react";
 import auth from "../Firebase/firebase.config";
 import { useLocalStorage } from "@uidotdev/usehooks";
+import { useFetch } from "../Fetching/useFetch";
+import axios from "axios";
 
 export const AuthContext = createContext(null)
 
@@ -14,7 +16,7 @@ const [loading,setLoading] = useState(true)
 const [dark,setDark] = useLocalStorage('dark',false)
 const [cart,setCart] = useState([])
 const [name,setName] = useState('')
-
+const [cartLoading,setCartLoading] = useState(true)
 
 const goToTop = ()=>{
    window.scrollTo({
@@ -23,7 +25,16 @@ const goToTop = ()=>{
    });
 }
 
-
+ const cartFetch= async()=>{
+    setCartLoading(true);
+   await axios
+      .get(`http://localhost:5000/api/v1/cart?email=${user.email}`)
+      .then((res) =>{
+         setCart(res.data);
+          setCartLoading(false);
+      });
+    
+ }
 
 
 document.querySelector("html").setAttribute("data-theme", `${dark ? "dark" : "light"}`); 
@@ -53,17 +64,19 @@ const logout = ()=>{
 useEffect(()=>{
     const unsubscribe = onAuthStateChanged(auth,(currentUser)=>{
         setUser(currentUser)
-        
+        cartFetch()
         setLoading(false)
+        
     })
     return ()=> unsubscribe()
 },[])
     const info = {
+        cartLoading,
       goToTop,
    cart,setCart,
       name,
       setName,
-    
+    cartFetch,
       user,
       dark,
       setDark,
