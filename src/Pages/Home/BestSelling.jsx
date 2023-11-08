@@ -16,7 +16,7 @@ const url = "http://localhost:5000/api/v1/best-selling";
 const {data,isFetching} = useFetch(url,'best-selling');
 
     return (
-      <section className="text-gray-600 body-font mb-10  relative">
+      <section className="text-gray-600 body-font mb-10 mt-10 relative ">
         <div className="container px-5 py-16  mx-auto">
           <div className="flex flex-wrap w-full mb-20">
             <div className="lg:w-1/2 relative w-full mb-6 lg:mb-0 group">

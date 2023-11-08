@@ -37,3 +37,28 @@ body{
   font-family: blantick;
   
 }
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  background-position: center;
+  background-size: contain;
+  
+}
+
+.swiper-slide img {
+  display: block;
+  object-fit: cover;
+  width: 100%;
+  height: 80vh;
+}
+
+.swiper-pagination-bullet {
+
+    background-color: rgb(255, 255, 255) !important;
+
+   
+}

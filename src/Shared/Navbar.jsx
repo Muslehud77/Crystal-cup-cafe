@@ -50,7 +50,7 @@ const links = (
   return (
     <div>
      
-      <div className="navbar relative z-50 bg-black bg-opacity-10 dark:bg-opacity-20 shadow-lg backdrop-blur-sm h-16">
+      <div className="navbar absolute top-0 z-50 bg-black bg-opacity-10 dark:bg-opacity-20 shadow-lg backdrop-blur-sm h-16">
         <div className="navbar-start">
           <div className="dropdown md:hidden">
             <ResponsiveNav></ResponsiveNav>
