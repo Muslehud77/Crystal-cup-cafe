@@ -10,6 +10,8 @@ import Card from "./Card";
 import SkeletonCardHome from "../Home/SkeletonCardHome";
 
 
+import { Helmet } from "react-helmet";
+
 
 
 
@@ -42,7 +44,6 @@ const Menu = () => {
       setCurrentPage(1);
     };
    
-    console.log(data)
 
   useEffect(() => {
     if (sort === "All") {
@@ -57,7 +58,7 @@ const Menu = () => {
       );
     }
      refetch();
-    console.log(url);
+  
   }, [url,pagesCount, currentPage]);
 
 
@@ -91,7 +92,7 @@ useEffect(() => {
   refetch();
 }, [url, pagesCount, currentPage]);
 
-console.log(url, pagesCount, currentPage);
+
 
  
   const sortings = ['All','Ice-Cream','Faluda','Lassi','Drinks','Dessert','Combo']
@@ -100,12 +101,16 @@ console.log(url, pagesCount, currentPage);
     e.preventDefault()
   }
 
-  console.log(sort)
+
 
     return (
       <div className="bg-patternLight dark:bg-patternDark overflow-hidden">
         <BannerSlider path={path}></BannerSlider>
-
+        <Helmet>
+          <meta charSet="utf-8" />
+          <title>Cystal Cup | Menu</title>
+        </Helmet>
+        ;
         <div className="">
           <header className="text-gray-600 dark:text-gray-300 body-font">
             <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
@@ -142,25 +147,34 @@ console.log(url, pagesCount, currentPage);
           </header>
         </div>
         <div className="md:grid grid-cols-3 gap-10 container mx-auto">
-          {isFetching && <SkeletonCardHome w={true}></SkeletonCardHome>}
-          {data?.data.map((item) => (
-            <Card key={item._id} item={item}></Card>
-          ))}
+          {isFetching ? (
+            <SkeletonCardHome w={true}></SkeletonCardHome>
+          ) : (
+            data?.data.map((item) => <Card key={item._id} item={item}></Card>)
+          )}
         </div>
-        <div onClick={toTop} className="flex justify-center my-10">
+        <div className="flex justify-center my-10">
           <div className="join border-none">
-            <button
-              onClick={() =>
-                setCurrentPage(currentPage !== 1 && currentPage - 1)
-              }
-              className="join-item outline-0 btn btn-md"
-            >
-              prev
-            </button>
+            {currentPage !== 1 && (
+              <button
+                onClick={() => {
+                  setCurrentPage(currentPage !== 1 && currentPage - 1);
+                  toTop();
+                }}
+                className={`join-item outline-0 btn btn-md ${
+                  currentPage === 1 && "hidden"
+                }`}
+              >
+                prev
+              </button>
+            )}
             {pages.map((page, i) => (
               <button
                 key={i}
-                onClick={() => setCurrentPage(page)}
+                onClick={() => {
+                  setCurrentPage(page);
+                  toTop();
+                }}
                 className={`join-item ${
                   currentPage === page && "btn-active"
                 } outline-0 btn btn-md`}
@@ -179,11 +193,12 @@ console.log(url, pagesCount, currentPage);
               <option value="50">50</option>
             </select>
             <button
-              onClick={() =>
+              onClick={() => {
                 setCurrentPage(
                   currentPage !== pagesCount ? currentPage + 1 : currentPage
-                )
-              }
+                );
+                toTop();
+              }}
               className="join-item outline-0 btn btn-md"
             >
               next

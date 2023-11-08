@@ -1,12 +1,15 @@
 import { Link } from "react-router-dom";
+import useContextData from "../../Hooks/useContextData";
 
 
 const Card = ({item}) => {
 
-   const {_id, name, description, ingredients, makingProcedure, category, price_BTD, quantity, foodOriginCountry, addedBy, sellingCount, image, nameOfAdder} = item
+  const{goToTop} = useContextData()
+   const {_id, name, category, price_BTD, quantity,  image} = item
 
     return (
-      <Link to={`/menu/item-details/${_id}`}>
+      <Link onClick={goToTop} to={`/item/${_id}`}>
+        
         <div className="flex mb-10 md:mb-0 justify-center items-center">
           <div className="group h-[500px] hover:shadow-xl rounded-md w-full relative overflow-hidden cursor-pointer">
             <div className="h-full w-full">

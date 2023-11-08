@@ -17,6 +17,9 @@ import ManageItems from "../Pages/Manage-Items/ManageItems";
 import AddedByUser from "../Pages/AddedByUser/AddedByUser";
 import HandleOrders from "../Pages/HandleOrders/HandleOrders";
 import Menu from "../Pages/Menu/Menu";
+import ItemDetails from "../Pages/ItemDetails/ItemDetails";
+import AddToCartPage from "../Pages/AddToCartPage/AddToCartPage";
+
 
   
 const Router = () => {
@@ -54,76 +57,94 @@ const Router = () => {
           {
             path: "/login",
             element: (
-                <PrivateRouteForLoginSignUp>
-              <AnimatePresence mode="wait" initial={false}>
+              <PrivateRouteForLoginSignUp>
+                <AnimatePresence mode="wait" initial={false}>
                   <Login key={"/login"}></Login>
-              </AnimatePresence>
-                </PrivateRouteForLoginSignUp>
+                </AnimatePresence>
+              </PrivateRouteForLoginSignUp>
             ),
           },
           {
             path: "/register",
             element: (
-                <PrivateRouteForLoginSignUp>
-              <AnimatePresence mode="wait" initial={false}>
+              <PrivateRouteForLoginSignUp>
+                <AnimatePresence mode="wait" initial={false}>
                   <Register key={"/register"}></Register>
-              </AnimatePresence>
-                </PrivateRouteForLoginSignUp>
+                </AnimatePresence>
+              </PrivateRouteForLoginSignUp>
             ),
           },
           {
             path: "/cart",
             element: (
-                <PrivateRouteForOthers>
-              <AnimatePresence mode="wait" initial={false}>
+              <PrivateRouteForOthers>
+                <AnimatePresence mode="wait" initial={false}>
                   <Cart key={"/cart"}></Cart>
-              </AnimatePresence>
-                </PrivateRouteForOthers>
+                </AnimatePresence>
+              </PrivateRouteForOthers>
             ),
           },
-         
+
           {
             path: "/add-item",
             element: (
-                <PrivateRouteForOthers>
-              <AnimatePresence mode="wait" initial={false}>
-
+              <PrivateRouteForOthers>
+                <AnimatePresence mode="wait" initial={false}>
                   <AddItem key={"/add-item"}></AddItem>
+                </AnimatePresence>
+              </PrivateRouteForOthers>
+            ),
+          },
+          {
+            path: "/add-to-cart/:id",
+            element: (
+              <PrivateRouteForOthers>
+                <AnimatePresence mode="wait" initial={false}>
+                  <AddToCartPage key={"/add-to-cart/:id"}></AddToCartPage>
+                </AnimatePresence>
+              </PrivateRouteForOthers>
+            ),
+          },
+          {
+            path: "/item/:id",
+            loader: ({ params }) =>
+              fetch(
+                `http://localhost:5000/api/v1/menu/item-details/${params.id}`
+              ),
+            element: (
+              <AnimatePresence mode="wait" initial={false}>
+                <ItemDetails key={"/item-details/:id"}></ItemDetails>
               </AnimatePresence>
-                </PrivateRouteForOthers>
             ),
           },
           {
             path: "/manage-items",
             element: (
-                <PrivateRouteForOthers>
-              <AnimatePresence mode="wait" initial={false}>
-              
+              <PrivateRouteForOthers>
+                <AnimatePresence mode="wait" initial={false}>
                   <ManageItems key={"/manage-items"}></ManageItems>
-              </AnimatePresence>
-                </PrivateRouteForOthers>
+                </AnimatePresence>
+              </PrivateRouteForOthers>
             ),
           },
           {
-            path: "/items-added-by-user",
+            path: "/item-added-by-user",
             element: (
-                <PrivateRouteForOthers>
-              <AnimatePresence mode="wait" initial={false}>
-              
-                  <AddedByUser key={"/items-added-by-user"}></AddedByUser>
-              </AnimatePresence>
-                </PrivateRouteForOthers>
+              <PrivateRouteForOthers>
+                <AnimatePresence mode="wait" initial={false}>
+                  <AddedByUser key={"/item-added-by-user"}></AddedByUser>
+                </AnimatePresence>
+              </PrivateRouteForOthers>
             ),
           },
           {
             path: "/manage-orders",
             element: (
-                <PrivateRouteForOthers>
-              <AnimatePresence mode="wait" initial={false}>
-              
+              <PrivateRouteForOthers>
+                <AnimatePresence mode="wait" initial={false}>
                   <HandleOrders key={"/manage-orders"}></HandleOrders>
-              </AnimatePresence>
-                </PrivateRouteForOthers>
+                </AnimatePresence>
+              </PrivateRouteForOthers>
             ),
           },
         ],

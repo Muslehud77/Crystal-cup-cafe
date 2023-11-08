@@ -8,7 +8,6 @@ import cover7 from '../Assets/cover/cover (5).jpg'
 import cover8 from '../Assets/cover/cover (6).jpg'
 import logo from '../Assets/logo.png'
 
-import { useRef, useState } from "react";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -22,16 +21,16 @@ import "swiper/css/pagination";
 
 
 import { EffectFade, Pagination, Autoplay } from "swiper/modules";
-import { Link, useLocation, useNavigation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { AiOutlineArrowRight } from 'react-icons/ai'
 
 
 
 
-const BannerSlider = ({path}) => {
+const BannerSlider = ({path,show}) => {
 
     const {pathname} = useLocation()
-    console.log(pathname)
+
 
 
     return (
@@ -50,7 +49,8 @@ const BannerSlider = ({path}) => {
             modules={[EffectFade, Autoplay, Pagination]}
             className="mySwiper"
           >
-            <SwiperSlide>
+           {
+            show === false ? '' : <><SwiperSlide>
               <div className="relative flex items-center">
                 <img className={`${pathname === '/' && '!h-screen'} transition-all duration-500`} src={cover8} />
                 <div className="absolute left-5 md:left-20 md:mb-10 flex-col">
@@ -87,6 +87,7 @@ const BannerSlider = ({path}) => {
                 </div>
               </div>
             </SwiperSlide>
+
             <SwiperSlide>
               <div className="relative flex items-center">
                 <img className={`${pathname === '/' && '!h-screen'} transition-all duration-500`} src={cover7} />
@@ -124,6 +125,7 @@ const BannerSlider = ({path}) => {
                 </div>
               </div>
             </SwiperSlide>
+
             <SwiperSlide>
               <div className="relative flex items-center">
                 <img className={`${pathname === '/' && '!h-screen'} transition-all duration-500`} src={cover6} />
@@ -161,6 +163,7 @@ const BannerSlider = ({path}) => {
                 </div>
               </div>
             </SwiperSlide>
+
             <SwiperSlide>
               <div className="relative flex justify-center items-center">
                 <img className={`${pathname === '/' && '!h-screen'} transition-all duration-500`} src={cover5} />
@@ -198,6 +201,7 @@ const BannerSlider = ({path}) => {
                 </div>
               </div>
             </SwiperSlide>
+
             <SwiperSlide>
               <div className="relative flex  items-center">
                 <img className={`${pathname === '/' && '!h-screen'} transition-all duration-500`} src={cover4} />
@@ -235,6 +239,7 @@ const BannerSlider = ({path}) => {
                 </div>
               </div>
             </SwiperSlide>
+
             <SwiperSlide>
               <div className="relative flex justify-center items-center">
                 <img className={`${pathname === '/' && '!h-screen'} transition-all duration-500`} src={cover3} />
@@ -274,9 +279,64 @@ const BannerSlider = ({path}) => {
                 </div>
               </div>
             </SwiperSlide>
+
             <SwiperSlide>
               <div className="relative flex justify-center items-center">
-                <img className={`${pathname === '/' && '!h-screen'} transition-all duration-500`} src={cover2} />
+                <img
+                  className={`${
+                    pathname === "/" && "!h-screen"
+                  } transition-all duration-500`}
+                  src={cover1}
+                />
+                <div className="absolute ">
+                  <div className="flex justify-center">
+                    <img
+                      data-aos="fade-left"
+                      data-aos-anchor="#example-anchor"
+                      data-aos-offset="500"
+                      data-aos-duration="1000"
+                      className="!w-20 !h-20 md:!h-44 md:!w-44"
+                      src={logo}
+                      alt=""
+                    />
+                  </div>
+                  <h2
+                    data-aos="fade-up"
+                    data-aos-anchor-placement="top-bottom"
+                    className="text-white text-center finura text-2xl md:text-5xl"
+                  >
+                    Your Table, Your Adventure <br /> Crystal Cup's Menu
+                  </h2>
+                  {pathname === "/" && (
+                    <Link
+                      to={"/menu"}
+                      className="font-serif md:text-xl outline outline-[1px] px-10 md:px-12 py-3 mt-2 rounded-full hover:outline-0  text-white group relative flex justify-center items-center overflow-hidden"
+                    >
+                      <span className="absolute left-0 w-0 h-full transition-all bg-[#C14616] opacity-100 group-hover:w-full group-hover:top-0 duration-500 ease"></span>
+                      <span className="relative">
+                        Explore Our Delectable Menu
+                      </span>{" "}
+                      <span className="absolute right-0 w-8 mt-[1px] flex items-center justify-start duration-500 transform translate-x-full group-hover:translate-x-0">
+                        <AiOutlineArrowRight />
+                      </span>
+                    </Link>
+                  )}
+                </div>
+              </div>
+            </SwiperSlide></>
+           }
+
+
+
+
+            <SwiperSlide>
+              <div className="relative flex justify-center items-center">
+                <img
+                  className={`${
+                    pathname === "/" && "!h-screen"
+                  } transition-all duration-500`}
+                  src={cover2}
+                />
                 <div className="absolute ">
                   <div className="flex justify-center">
                     <img
@@ -296,45 +356,6 @@ const BannerSlider = ({path}) => {
                   >
                     Raise Your Glass to Fine Dining <br />
                     at Crystal Cup
-                  </h2>
-                  {pathname === "/" && (
-                    <Link
-                      to={"/menu"}
-                      className="font-serif md:text-xl outline outline-[1px] px-10 md:px-12 py-3 mt-2 rounded-full hover:outline-0  text-white group relative flex justify-center items-center overflow-hidden"
-                    >
-                      <span className="absolute left-0 w-0 h-full transition-all bg-[#C14616] opacity-100 group-hover:w-full group-hover:top-0 duration-500 ease"></span>
-                      <span className="relative">
-                        Explore Our Delectable Menu
-                      </span>{" "}
-                      <span className="absolute right-0 w-8 mt-[1px] flex items-center justify-start duration-500 transform translate-x-full group-hover:translate-x-0">
-                        <AiOutlineArrowRight />
-                      </span>
-                    </Link>
-                  )}
-                </div>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="relative flex justify-center items-center">
-                <img className={`${pathname === '/' && '!h-screen'} transition-all duration-500`} src={cover1} />
-                <div className="absolute ">
-                  <div className="flex justify-center">
-                    <img
-                      data-aos="fade-left"
-                      data-aos-anchor="#example-anchor"
-                      data-aos-offset="500"
-                      data-aos-duration="1000"
-                      className="!w-20 !h-20 md:!h-44 md:!w-44"
-                      src={logo}
-                      alt=""
-                    />
-                  </div>
-                  <h2
-                    data-aos="fade-up"
-                    data-aos-anchor-placement="top-bottom"
-                    className="text-white text-center finura text-2xl md:text-5xl"
-                  >
-                    Your Table, Your Adventure <br /> Crystal Cup's Menu
                   </h2>
                   {pathname === "/" && (
                     <Link

@@ -43,16 +43,20 @@ const {data,isFetching} = useFetch(url,'best-selling');
             </p>
           </div>
           <div className="md:grid  grid-cols-3 flex flex-col justify-center group mt-28">
-            {isFetching && <SkeletonCardHome></SkeletonCardHome>}
-           
-            {data?.map((item) => (
-              <HomeCard key={item._id} item={item}></HomeCard>
-            ))}
+            {isFetching ? (
+              <SkeletonCardHome></SkeletonCardHome>
+            ) : (
+              <>
+                {data?.map((item) => (
+                  <HomeCard key={item._id} item={item}></HomeCard>
+                ))}
+              </>
+            )}
           </div>
         </div>
         <div className="flex justify-center items-center">
           <Link
-          onClick={goToTop}
+            onClick={goToTop}
             to={"/menu"}
             className="font-serif w-3/6 md:w-2/6 text-xl outline-black dark:text-white dark:outline-white hover:text-white outline outline-[1px] px-12 py-3 mt-2 rounded-full hover:outline-0   group relative flex justify-center items-center overflow-hidden"
           >
@@ -63,7 +67,6 @@ const {data,isFetching} = useFetch(url,'best-selling');
             </span>
           </Link>
         </div>
-        
       </section>
     );
 };

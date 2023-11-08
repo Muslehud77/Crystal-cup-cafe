@@ -81,7 +81,7 @@ const links = (
     </NavLink>
     <NavLink
       onClick={toggleDrawer("right", false)}
-      to={"/items-added-by-user"}
+      to={"/item-detailss-added-by-user"}
       className={({ isActive, isPending }) =>
         isActive ? active : isPending ? pending : idle
       }

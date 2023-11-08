@@ -14,7 +14,7 @@ const { goToTop } = useContextData();
         <Link
           onClick={goToTop}
           className="flex justify-center items-center"
-          to={`/menu/item-details/${_id}`}
+          to={`/item/${_id}`}
         >
           <div
             className={`w-10/12 mb-5 md:group-hover:scale-90  md:group-hover:blur-sm md:hover:!blur-none hover:!scale-110 transition-all duration-500 hover:cursor-pointer `}

@@ -13,7 +13,7 @@ import { Link, NavLink } from "react-router-dom";
 export default function ResponsiveNav() {
 
   const {user,logout} = useContextData()
-  console.log(user)
+
 
   const [state, setState] = React.useState({
     left: false,
