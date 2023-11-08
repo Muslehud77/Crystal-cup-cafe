@@ -1,16 +1,18 @@
 
 import { Link } from 'react-router-dom';
 import PropTypes from "prop-types";
+import useContextData from '../../Hooks/useContextData';
 const HomeCard = ({item}) => {
 
    
-
+const { goToTop } = useContextData();
    
      const { _id, name, category, price_BTD, color, image} = item;
  
     return (
       <>
         <Link
+          onClick={goToTop}
           className="flex justify-center items-center"
           to={`/menu/item-details/${_id}`}
         >

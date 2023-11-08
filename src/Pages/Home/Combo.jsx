@@ -4,7 +4,9 @@ import shape1 from '../../Assets/special/shape-1.png'
 
 import { Link } from 'react-router-dom';
 import { AiOutlineArrowRight } from 'react-icons/ai';
+import useContextData from '../../Hooks/useContextData';
 const Combo = () => {
+  const { goToTop } = useContextData();
   return (
     <div>
       <section
@@ -41,11 +43,10 @@ const Combo = () => {
           <div className="w-full">
             <div className="flex relative flex-col items-center md:pl-44 justify-center">
               <img src={combo1} alt="" className="" />
-          
             </div>
           </div>
         </div>
-        <div className='relative hidden dark:bg-gray-300 md:flex z-10 w-1 bg-black rotate-12'></div>
+        <div className="relative hidden dark:bg-gray-300 md:flex z-10 w-1 bg-black rotate-12"></div>
         <div className="relative md:mt-10 ml-10 flex flex-col md:w-1/2">
           <div
             data-aos="zoom-in-left"
@@ -76,6 +77,7 @@ const Combo = () => {
       </section>
       <div className="flex justify-center items-center">
         <Link
+          onClick={goToTop}
           to={"/menu"}
           className="font-serif w-4/6 md:w-2/6 text-xl outline-black dark:outline-white hover:text-white outline outline-[1px] px-12 py-3 mt-2 rounded-full hover:outline-0   group relative flex justify-center items-center overflow-hidden"
         >

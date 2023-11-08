@@ -5,12 +5,14 @@ import {  useFetch } from '../../Fetching/useFetch';
 import HomeCard from './HomeCard';
 import { AiOutlineArrowRight } from 'react-icons/ai';
 import SkeletonCardHome from './SkeletonCardHome';
-import { useEffect } from 'react';
+
+import useContextData from '../../Hooks/useContextData';
 
 
 const BestSelling = () => {
 const url = "http://localhost:5000/api/v1/best-selling";
 
+const {goToTop} = useContextData()
 
 
 const {data,isFetching} = useFetch(url,'best-selling');
@@ -50,6 +52,7 @@ const {data,isFetching} = useFetch(url,'best-selling');
         </div>
         <div className="flex justify-center items-center">
           <Link
+          onClick={goToTop}
             to={"/menu"}
             className="font-serif w-3/6 md:w-2/6 text-xl outline-black dark:text-white dark:outline-white hover:text-white outline outline-[1px] px-12 py-3 mt-2 rounded-full hover:outline-0   group relative flex justify-center items-center overflow-hidden"
           >
