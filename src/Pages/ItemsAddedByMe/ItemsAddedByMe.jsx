@@ -5,25 +5,42 @@ import BannerSlider from "../../Shared/BannerSlider";
 import Transition from "../../Transition/Transition";
 
 import { Helmet } from "react-helmet";
-import { useEffect } from "react";
-import Table from "./Table";
 
-const ManageItems = () => {
+import Table from "./Table";
+import Swal from "sweetalert2";
+
+const ItemsAddedByMe = () => {
  const {user} = useContextData()
 
 
-  const url = `http://localhost:5000/api/v1/manage?email=${user.email}`;
+  const url = `https://crystal-cup-server.vercel.app/api/v1/manage?email=${user?.email}`;
 
   const { data, isFetching, refetch } = useFetch(url);
 
-  console.log(url)
-  console.log(data);
- 
-  console.log(isFetching)
+  
 
-  const handleDelete = async (id) => {
-    await axios.delete(`http://localhost:5000/api/v1/menu/${id}`);
-    await refetch()
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success",
+        });
+       axios.delete(`https://crystal-cup-server.vercel.app/api/v1/menu/${id}`)
+       refetch()
+      }
+    });
+
+   
   };
 
   return (
@@ -76,4 +93,4 @@ const ManageItems = () => {
   );
 };
 
-export default ManageItems;
+export default ItemsAddedByMe;

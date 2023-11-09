@@ -37,7 +37,7 @@ const AddToCartPage = () => {
   });
 };
 
-    const url = "http://localhost:5000/api/v1/add-cart";
+    const url = "https://crystal-cup-server.vercel.app/api/v1/add-cart";
 
     const today = new Date();
     const year = today.getFullYear();
@@ -45,7 +45,8 @@ const AddToCartPage = () => {
     const day = today.getDate();
     const date = year + "/" + month + "/" + day;
 
-console.log(date);
+
+ const navigate = useNavigate();
 
     const mutation = useMutation({
       mutationFn: async (toDo) => {
@@ -63,12 +64,12 @@ console.log(date);
             timer: 1500,
           });
            goToTop()
-           navigate('/menu')
+          
         }
         return console.log(data.data);
       },
     });
-    const navigate= useNavigate()
+   
 
     const [totalAmount, setTotalAmount] = useState(item?.price_BTD)
 
@@ -93,20 +94,38 @@ console.log(date);
       }
 
 
+    if(item.addedBy===user.email){
+      goToTop()
+        navigate("/menu");
+      return Swal.fire({
+        icon: "error",
+        title: "Sorry",
+        text: "You are not allowed to add this to your cart!",
+      });
+    
+    }
+
+
       if(quantity <= parseInt(item.quantity)){
          const update = {
            quantity: parseInt(item?.quantity) - quantity,
            _id: item._id,
          };
-           axios.patch("http://localhost:5000/api/v1/edit-product",update);
+           axios.patch("https://crystal-cup-server.vercel.app/api/v1/edit-product",update);
          mutation.mutate(cart);
-       cartFetch()
+         goToTop()
+          navigate("/menu")
+       if(user.email){
+        cartFetch();
+       }
       }else{
         Swal.fire({
           icon: "error",
           title: "Sorry",
           text: "We don't have enough quantity",
         });
+        goToTop()
+         navigate("/menu")
       }
 
   

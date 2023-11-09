@@ -10,7 +10,7 @@ import useContextData from '../../Hooks/useContextData';
 
 
 const BestSelling = () => {
-const url = "http://localhost:5000/api/v1/best-selling";
+const url = "https://crystal-cup-server.vercel.app/api/v1/best-selling";
 
 const {goToTop} = useContextData()
 

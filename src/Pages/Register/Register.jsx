@@ -14,7 +14,7 @@ const specialCharacter = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]/;
 const Register = () => {
   //   const { state } = useLocation();
   const navigate = useNavigate()
-  const { register ,dark,setName } = useContext(AuthContext);
+  const { register ,dark,setName,goToTop } = useContext(AuthContext);
   const [show, setShow] = useState(false);
   const [err, setErr] = useState(null);
 
@@ -97,6 +97,7 @@ const Register = () => {
              color:`${!dark ? "black" : "white"}`,
            },
          });
+         goToTop()
         navigate('/')
 
       })

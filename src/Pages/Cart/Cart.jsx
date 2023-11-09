@@ -29,11 +29,13 @@ return a + parseInt(d?.quantity);
 },0)
 
 useEffect(()=>{
-  cartFetch()
+    if (user.email) {
+      cartFetch();
+    }
 },[])
 
 const handleDelete =async (id)=>{
- await axios.delete(`http://localhost:5000/api/v1/cart/${id}`)
+ await axios.delete(`https://crystal-cup-server.vercel.app/api/v1/cart/${id}`)
  await Swal.fire({
    position: "center",
    icon: "success",

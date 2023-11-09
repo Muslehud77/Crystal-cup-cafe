@@ -31,7 +31,7 @@ const EditItem = () => {
       };
     }
   };
-  const url = `http://localhost:5000/api/v1/modify/${data?._id}`;
+  const url = `https://crystal-cup-server.vercel.app/api/v1/modify/${data?._id}`;
 
   const mutation = useMutation({
     mutationFn: async (toDo) => {

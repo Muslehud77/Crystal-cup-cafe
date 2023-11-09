@@ -31,7 +31,7 @@ export default function User({hide}) {
     }
 
     setState({ ...state, [anchor]: open });
-    console.log(anchor)
+
   };
 
 //    onClick={toggleDrawer(anchor, false)}
@@ -77,17 +77,9 @@ const links = (
         isActive ? active : isPending ? pending : idle
       }
     >
-      Manage Items <AiOutlineArrowRight className="text-xl" />
-    </NavLink>
-    <NavLink
-      onClick={toggleDrawer("right", false)}
-      to={"/"}
-      className={({ isActive, isPending }) =>
-        isActive ? active : isPending ? pending : idle
-      }
-    >
       Items added by me <AiOutlineArrowRight className="text-xl" />
     </NavLink>
+   
     <NavLink
       onClick={toggleDrawer("right", false)}
       to={"/"}

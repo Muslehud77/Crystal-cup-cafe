@@ -3,13 +3,20 @@ import Transition from "../../Transition/Transition";
 
 import React from "react";
 import Background from "./Background";
+import { Helmet } from "react-helmet";
+
 
 const Contact = () => {
   return (
     <>
-      <section className="relative z-10 bg-patternLight dark:bg-patternDark overflow-hidden py-20 dark:bg-black lg:py-[120px]">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Cystal Cup | Contact</title>
+      </Helmet>
+      ;
+      <section className="relative z-10  bg-patternLight dark:bg-patternDark overflow-hidden py-20 dark:bg-black lg:py-[120px]">
         <div className="container">
-          <div className="-mx-4 flex flex-wrap lg:justify-between">
+          <div className=" flex  flex-wrap lg:justify-between">
             <div className="w-full px-4 lg:w-1/2 xl:w-6/12">
               <div className="mb-12 max-w-[570px] lg:mb-0">
                 <span className="mb-4 block text-base font-semibold text-primary">
@@ -66,7 +73,7 @@ const Contact = () => {
                       Email Address
                     </h4>
                     <p className="text-base text-body-color dark:text-dark-6">
-                     crytalcup@gmail.com
+                      crytalcup@gmail.com
                     </p>
                   </div>
                 </div>

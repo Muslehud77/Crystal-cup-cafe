@@ -26,7 +26,7 @@ const Login = () => {
         social()
         .then(res=>{
             navigate(`${state ?  state : '/'}`)
-            toast.success(`Welcome back! ${res.user.displayName}`, {
+            toast.success(`Welcome! ${res.user.displayName}`, {
               style: {
                 borderRadius: "10px",
                 background: `${dark ? "black" : "white"}`,

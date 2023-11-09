@@ -28,7 +28,7 @@ const goToTop = ()=>{
  const cartFetch= async()=>{
     setCartLoading(true);
    await axios
-      .get(`http://localhost:5000/api/v1/cart?email=${user.email}`,{withCredentials:true})
+      .get(`https://crystal-cup-server.vercel.app/api/v1/cart?email=${user?.email}`,{withCredentials:true})
       .then((res) =>{
          setCart(res.data);
           setCartLoading(false);
@@ -63,9 +63,31 @@ const logout = ()=>{
 
 useEffect(()=>{
     const unsubscribe = onAuthStateChanged(auth,(currentUser)=>{
+        const userEmail = currentUser?.email || user?.email;
+        const userData = { email: userEmail };
         setUser(currentUser)
-        cartFetch()
+       if(currentUser?.email){
+        cartFetch();
+       }
+        if (currentUser) {
+          axios
+            .post("https://crystal-cup-server.vercel.app/jwt", userData, {
+              withCredentials: true,
+            })
+            .then((res) => {
+              console.log(res.data);
+            });
+        } else {
+          axios
+            .post("https://crystal-cup-server.vercel.app/logout", userData, {
+              withCredentials: true,
+            })
+            .then((res) => {
+              console.log(res.data);
+            });
+        }
         setLoading(false)
+
         
     })
     return ()=> unsubscribe()

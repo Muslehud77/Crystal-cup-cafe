@@ -26,7 +26,7 @@ const Menu = () => {
 
 
 
-  const [url, setUrl] = useState(`http://localhost:5000/api/v1/menu?page=1&size=9`);
+  const [url, setUrl] = useState(`https://crystal-cup-server.vercel.app/api/v1/menu?page=1&size=9`);
   const { data, isFetching, refetch } = useFetch(url);
 
 
@@ -49,12 +49,12 @@ const Menu = () => {
     if (sort === "All") {
       setPath(`/menu`);
       setUrl(
-        `http://localhost:5000/api/v1/menu?page=${currentPage}&size=${itemsPerPage}`
+        `https://crystal-cup-server.vercel.app/api/v1/menu?page=${currentPage}&size=${itemsPerPage}`
       );
     } else {
       setPath(`/menu/${sort}`);
       setUrl(
-        `http://localhost:5000/api/v1/menu/${sort}?page=${currentPage}&size=${itemsPerPage}`
+        `https://crystal-cup-server.vercel.app/api/v1/menu/${sort}?page=${currentPage}&size=${itemsPerPage}`
       );
     }
      refetch();
@@ -74,12 +74,12 @@ const toTop = ()=>{
     if (s === "All") {
       setPath(`/menu`);
       setUrl(
-        `http://localhost:5000/api/v1/menu?page=${currentPage}&size=${itemsPerPage}`
+        `https://crystal-cup-server.vercel.app/api/v1/menu?page=${currentPage}&size=${itemsPerPage}`
       );
     } else {
       setPath(`/menu/${s}`);
       setUrl(
-        `http://localhost:5000/api/v1/menu/${s}?page=${currentPage}&size=${itemsPerPage}`
+        `https://crystal-cup-server.vercel.app/api/v1/menu/${s}?page=${currentPage}&size=${itemsPerPage}`
       );
     }
     setSort(s)

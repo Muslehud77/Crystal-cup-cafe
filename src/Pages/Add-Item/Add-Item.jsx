@@ -5,6 +5,8 @@ import { AuthContext } from "../../ContextProvider/AuthContext";
 import Transition from "../../Transition/Transition";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 
 
@@ -21,7 +23,7 @@ const capitalize = (array) => {
 const AddItem = () => {
   const { dark ,user} = useContext(AuthContext);
   const [img,setImg] = useState(null)
-
+const navigate = useNavigate();
 const base64 = (e)=>{
   const reader = new FileReader();
  const isPresent = e.target.files.length
@@ -32,7 +34,7 @@ const base64 = (e)=>{
    };
  }
 }
-const url = "http://localhost:5000/api/v1/add-product";
+const url = "https://crystal-cup-server.vercel.app/api/v1/add-product";
 
 const mutation = useMutation({
   mutationFn: async (toDo) => {
@@ -49,6 +51,7 @@ const mutation = useMutation({
         showConfirmButton: false,
         timer: 1500,
       });
+      navigate('/manage-items')
     }
     return console.log(data.data)
   },
@@ -94,6 +97,11 @@ const mutation = useMutation({
 
   return (
     <div className="isolate px-6 py-24 sm:py-32 lg:px-8">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Cystal Cup | Add Item</title>
+      </Helmet>
+      
       <div
         className="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]"
         aria-hidden="true"
@@ -107,13 +115,10 @@ const mutation = useMutation({
         />
       </div>
       <div className="mx-auto max-w-2xl text-center">
-        <h2 className="text-7xl finura  tracking-tight  ">
-          Add Item
-        </h2>
+        <h2 className="text-7xl finura  tracking-tight  ">Add Item</h2>
         <p className="mt-2 text-lg leading-8 "></p>
       </div>
       <form
-      
         onSubmit={addProduct}
         className="mx-auto justify-center flex-col md:flex-row gap-10 flex mt-16 sm:mt-20"
       >
@@ -146,7 +151,7 @@ const mutation = useMutation({
                 </div>
               )}
 
-              <input 
+              <input
                 id="dropzone-file"
                 accept="image/*"
                 name="file"
@@ -170,8 +175,8 @@ const mutation = useMutation({
                 OR
               </label>
               <div className=" mt-2.5">
-                <input required
-                  
+                <input
+                  required
                   placeholder="URL"
                   type="photo"
                   name="image"
@@ -187,7 +192,8 @@ const mutation = useMutation({
               Item Name
             </label>
             <div className="mt-2.5">
-              <input required
+              <input
+                required
                 // required
                 placeholder="Item Name"
                 type="text"
@@ -203,7 +209,8 @@ const mutation = useMutation({
               Country
             </label>
             <div className="mt-2.5">
-              <input required
+              <input
+                required
                 // required
                 placeholder="Food origin country
 "
@@ -240,7 +247,8 @@ const mutation = useMutation({
               Quantity
             </label>
             <div className=" mt-2.5">
-              <input required
+              <input
+                required
                 placeholder="100"
                 // required
                 type="number"
@@ -254,7 +262,8 @@ const mutation = useMutation({
               Price
             </label>
             <div className="relative mt-2.5">
-              <input required
+              <input
+                required
                 placeholder="Price"
                 // required
                 type="number"
@@ -272,7 +281,8 @@ const mutation = useMutation({
               Ingredients
             </label>
             <div className=" mt-2.5">
-              <input required
+              <input
+                required
                 // required
                 placeholder="Ingredients (put Comma ',' after each ingredient)"
                 name="ingredients"
@@ -285,7 +295,8 @@ const mutation = useMutation({
               Making Procedure
             </label>
             <div className=" mt-2.5">
-              <input required
+              <input
+                required
                 // required
                 placeholder="Making Procedure (put Comma ',' after each procedure)"
                 name="makingProcedure"
@@ -316,7 +327,6 @@ const mutation = useMutation({
           </div>
         </div>
       </form>
-
       <Transition></Transition>
     </div>
   );

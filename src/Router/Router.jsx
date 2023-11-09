@@ -13,7 +13,7 @@ import PrivateRouteForLoginSignUp from './../PrivateRoute/PrivateRouteForLoginSi
 import PrivateRouteForOthers from './../PrivateRoute/PrivateRouteForOthers';
 import Cart from "../Pages/Cart/Cart";
 import AddItem from "../Pages/Add-Item/Add-Item";
-import ManageItems from "../Pages/Manage-Items/ManageItems";
+import ItemsAddedByMe from "../Pages/ItemsAddedByMe/ItemsAddedByMe";
 import AddedByUser from "../Pages/AddedByUser/AddedByUser";
 import HandleOrders from "../Pages/HandleOrders/HandleOrders";
 import Menu from "../Pages/Menu/Menu";
@@ -22,6 +22,7 @@ import AddToCartPage from "../Pages/AddToCartPage/AddToCartPage";
 import EditItem from "../Pages/EditItem/EditItem";
 import useContextData from "../Hooks/useContextData";
 import axios from "axios";
+import Blog from "../Blog.jsx/Blog";
 
 
   
@@ -46,6 +47,14 @@ const Router = () => {
             element: (
               <AnimatePresence mode="wait" initial={false}>
                 <Menu key={"/menu"}></Menu>
+              </AnimatePresence>
+            ),
+          },
+          {
+            path: "/blog",
+            element: (
+              <AnimatePresence mode="wait" initial={false}>
+                <Blog key={"/blog"}></Blog>
               </AnimatePresence>
             ),
           },
@@ -102,7 +111,7 @@ const Router = () => {
             path: "/add-to-cart/:id",
             loader: ({ params }) =>
               fetch(
-                `http://localhost:5000/api/v1/menu/item-details/${params.id}`
+                `https://crystal-cup-server.vercel.app/api/v1/menu/item-details/${params.id}`
               ),
             element: (
               <PrivateRouteForOthers>
@@ -116,7 +125,7 @@ const Router = () => {
             path: "/item/:id",
             loader: ({ params }) =>
               fetch(
-                `http://localhost:5000/api/v1/menu/item-details/${params.id}`
+                `https://crystal-cup-server.vercel.app/api/v1/menu/item-details/${params.id}`
               ),
             element: (
               <AnimatePresence mode="wait" initial={false}>
@@ -129,7 +138,7 @@ const Router = () => {
             element: (
               <PrivateRouteForOthers>
                 <AnimatePresence mode="wait" initial={false}>
-                  <ManageItems key={"/manage-items"}></ManageItems>
+                  <ItemsAddedByMe key={"/manage-items"}></ItemsAddedByMe>
                 </AnimatePresence>
               </PrivateRouteForOthers>
             ),
@@ -157,7 +166,7 @@ const Router = () => {
           {
             path: "/edit-item/:id",
             loader: async ({ params }) =>{
-              const data= await axios.get(`http://localhost:5000/api/v1/manage/edit-item/${params.id}/${user?.email}`)
+              const data= await axios.get(`https://crystal-cup-server.vercel.app/api/v1/manage/edit-item/${params.id}`)
               return data.data
             }
              

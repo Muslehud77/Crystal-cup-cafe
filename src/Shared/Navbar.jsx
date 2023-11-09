@@ -43,28 +43,45 @@ const links = (
     >
       Contact
     </NavLink>
+    <NavLink
+      className={({ isActive, isPending }) =>
+        isActive ? active : isPending ? pending : idle
+      }
+      to={"/blog"}
+    >
+      Blog
+    </NavLink>
   </>
 );
 
 
+
   return (
     <div>
-     
-      <div className="navbar absolute top-0 z-50 bg-black bg-opacity-10 dark:bg-opacity-20 shadow-lg backdrop-blur-sm h-16">
+      <div
+        className={`${
+          pathname === "/contact" ||
+          pathname === "/login" ||
+          pathname === "register"
+            ? "bg-patternDark"
+            : "bg-black  bg-opacity-50"
+        }  navbar absolute bg top-0 z-50 bg-black  bg-opacity-50 dark:bg-opacity-20 shadow-lg backdrop-blur-sm h-16`}
+      >
         <div className="navbar-start">
           <div className="dropdown md:hidden">
             <ResponsiveNav></ResponsiveNav>
           </div>
-          <img src={logo} className="w-12" alt="" />
+          <Link to={"/"}>
+            {" "}
+            <img src={logo} className="w-12" alt="" />
+          </Link>
           <div className="ml-10 hidden lg:flex">
             <ul
               className={`${
                 pathname === "/" && "text-white"
               } menu  gap-5 menu-horizontal px-1`}
             >
-             {
-              links
-             }
+              {links}
             </ul>
           </div>
         </div>
